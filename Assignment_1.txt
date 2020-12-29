@@ -1,0 +1,80 @@
+Question 1:
+
+Write the program for deleting an element from the beginning and from any position.
+
+#include <stdio.h>
+
+int main()
+{
+    int arr[100];
+    int i, size, pos;
+    printf("Enter size of the array : ");
+    scanf("%d", &size);
+    printf("Enter elements in array : ");
+    for(i=0; i<size; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+    printf("Enter the element position to delete : ");
+    scanf("%d", &pos);
+    if(pos < 0 || pos > size)
+    {
+        printf("Invalid position");
+    }
+    else
+    {
+        for(i=pos-1; i<size-1; i++)
+        {
+            arr[i] = arr[i + 1];
+        }
+        size--;
+    }
+        printf("\nElements of array after delete are : ");
+        for(i=0; i<size; i++)
+        {
+            printf("\t%d\t", arr[i]);
+        }
+    return 0;
+}
+
+
+
+Question 2:
+Write the program for printing the array after rotating it k times towards left, where k
+would be taken as user input.
+
+#include <stdio.h>
+
+int main()
+{
+    int arr[] = {10, 20, 30, 40, 50};
+    int length = sizeof(arr)/sizeof(arr[0]);
+    int n;
+    printf("Original array: \n");
+    for (int i = 0; i < length; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\nEnter the number of times to rotate: ");
+    scanf("%d",&n);
+    for(int i = 0; i < n; i++)
+        {
+        int j, first;
+        first = arr[0];
+        for(j = 0; j < length-1; j++)
+            {
+
+            arr[j] = arr[j+1];
+            }
+
+        arr[j] = first;
+    }
+
+    printf("\n");
+    printf("Array after left rotation: \n");
+    for(int i = 0; i < length; i++)
+        {
+        printf("%d ", arr[i]);
+        }
+    return 0;
+}
