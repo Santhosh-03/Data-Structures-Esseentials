@@ -1,0 +1,64 @@
+Question 1:
+
+In the Binary Search algorithm, it is suggested to calculate the mid as
+beg + (end - beg) / 2 instead of (beg + end) / 2. Why is it so?
+
+
+ANSWER:
+
+1. beg + (end - beg) / 2  works even when (end - beg) doesnt overflow.
+
+2. beg + (end - beg) / 2 won't overflow if start and end are large positive numbers. With signed operands, overflow is undefined
+
+
+Question 2:
+
+Write the algorithm/function for Ternary Search.
+
+CODE :
+
+#include<stdio.h>
+
+int Ternerary_Search(int l , int r , int key , int arr[])
+{
+    if( r >= l )
+    {
+        int m1 = l + (r-l)/3 ;
+        int m2 = r - (r-l)/3 ;
+        
+        if(arr[m1]==key)
+            return m1;
+        
+        if(arr[m2]==key)
+            return m2;
+        
+        if(key<arr[m1])
+            return Ternerary_Search(l,m1-1,key,arr);
+        
+        else if(key>arr[m2])
+            return Ternerary_Search(m2+1,r,key,arr);
+        
+        else
+            return Ternerary_Search(m2+1,m1-1,key,arr);
+    }
+    return -1;
+}
+
+int main()
+{
+
+    int l,r,p,key;
+    int arr[]={21,34,66,28,46,72,56};
+    l=0;
+    r=7;
+    
+    printf("\nThe array is :");
+    for(int i=0;i<r;i++)
+        printf("%d  ",arr[i]);
+    
+    printf("\nEnter the element to be searched :");
+    scanf("%d",&key);
+    
+    p=Ternerary_Search(l,r,key,arr);
+    printf("\nIndex of %d is %d ",key,p);
+}
