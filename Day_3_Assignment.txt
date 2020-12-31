@@ -1,0 +1,101 @@
+Question 1 :
+
+Write a function “insert_any()” for inserting a node at any given position of the linked list. Assume position starts at 0. 
+
+CODE:
+
+
+int insert_any(int item)
+{
+    int i,pos;
+    struct node*ptr = (struct node*)malloc(sizeof(struct node));
+    struct node*temp;
+    if(ptr=NULL)
+    {
+        printf("\nOverflow\n");
+    }
+    else
+    {
+        printf("\nEnter the location\n");
+        scanf("%d",&pos);
+        ptr->data=item;
+        temp=head;
+        for(i=0;i<pos;i++)
+        {
+            temp=temp->next;
+            if(temp==NULL)
+            {
+                printf("\nCant insert\n");
+                return;
+            }
+        }
+        ptr->next=temp->next;
+        temp->next=ptr;
+        printf("\nNode inserted\n");
+    }
+    return item;
+}
+
+
+Question 2 :
+
+Write a function “delete_beg()” for deleting a node from the beginning of the linked list.
+
+CODE:
+
+void delete_beg()
+{
+    struct node*toDel;
+    if(head==NULL)
+        print("\nUnable to delete\n")
+    else
+    {
+        toDel = head;
+        head=head->next;
+        printf("\nData deleted is %d",toDel->data);
+        free(toDel);
+        printf("nSuccessfully deleted first node\n")
+    }
+}
+
+
+Question 3 :
+
+Write a function “delete_end()” for deleting a node from the end of the linked list.
+
+CODE:
+
+void delete_end()
+{
+    struct node *toDel, *secondLastNode;
+
+    if(head == NULL)
+    {
+        printf("List is already empty.");
+    }
+    else
+    {
+        toDel = head;
+        secondLastNode = head;
+        while(toDel->next != NULL)
+        {
+            secondLastNode = toDel;
+            toDel = toDel->next;
+        }
+
+        if(toDel == head)
+        {
+            head = NULL;
+        }
+        else
+        {
+
+            secondLastNode->next = NULL;
+        }
+        free(toDel);
+
+        printf("SUCCESSFULLY DELETED LAST NODE OF LIST\n");
+    }
+}
+
+
