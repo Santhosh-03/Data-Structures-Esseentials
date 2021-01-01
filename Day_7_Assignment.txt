@@ -1,0 +1,96 @@
+Question 1:
+
+Write a program implementing insert, delete and display operation of Circular Queue.
+
+CODE :
+
+#include<stdio.h>
+#define size 5
+void enqueue(int[],int);
+void dequeue(int[]);
+void display(int[]);
+int front = -1;
+int rear = -1;
+int main()
+{
+    int n,ch;
+    int cq[size];
+    do
+    {
+
+
+    printf("\n\nCircular queue :\n 1.Enqueue \n 2.Dequeue \n 3.Display \n 4.Exit ");
+    printf("\nEnter your choice 1-3 :");
+    scanf("%d",&ch);
+    switch(ch)
+    {
+    case 1:
+        printf("\nEnter the number :");
+        scanf("%d",&n);
+        enqueue(cq,n);
+        break;
+    case 2:
+        dequeue(cq);
+        break;
+    case 3:
+        display(cq);
+        break;
+    }
+
+}while(ch!=0);
+}
+void enqueue(int cq[],int item)
+{
+    if((front == 0 && rear == size-1)||(front == rear+1))
+    {
+
+        printf("\nQueue is empty");
+        return;
+    }
+    else if(rear==-1)
+    {
+
+        front++;
+        rear++;
+    }
+    else if(rear==size-1 && front > 0)
+        rear=0;
+    else
+        rear++;
+    cq[rear]=item;
+}
+void display(int cq[])
+{
+    int i;
+    if(front > rear)
+    {
+        for(i=front;i<size;i++)
+        {
+            printf("%d  ",cq[i]);
+        }
+        for(i=1;i<=rear;i++)
+        {
+            printf("%d ",cq[i]);
+        }
+    }
+    else
+    {
+        for(i=front;i<=rear;i++)
+            printf("%d ",cq[i]);
+    }
+}
+void dequeue(int cq[])
+{
+    if(front==-1)
+        printf("\nQueue is empty ");
+    else if(front==rear)
+    {
+        printf("\n%d deleted ",cq[front]);
+        front = -1;
+        rear = -1;
+    }
+    else
+    {
+        printf("\n%d deleted ",cq[front]);
+    }
+}
